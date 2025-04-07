@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>U La Salle - Formulario de Contacto</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        nav {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        nav a {
+            margin: 0 10px;
+        }
+        form {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        label, input, textarea, select {
+            display: block;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        footer {
+            text-align: center;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Universidad La Salle</h1>
+    </header>
+    
+    <nav>
+        <a href="#" id="inicio-link">Inicio</a>
+        <a href="#" id="contacto-link">Contacto</a>
+    </nav>
+    
+    <div id="pagina-inicio">
+        <h2>Bienvenidos a la Universidad La Salle</h2>
+        <p>Si tienes alguna pregunta o comentario, contacta con nosotros.</p>
+        <button id="ir-contacto">Ir al formulario de contacto</button>
+    </div>
+    
+    <div id="pagina-contacto" style="display: none;">
+        <h2>Formulario de Contacto</h2>
+        <form id="formulario">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" required>
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            
+            <label for="asunto">Asunto:</label>
+            <select id="asunto" name="asunto" required>
+                <option value="">Seleccione</option>
+                <option value="info">Información</option>
+                <option value="admision">Admisión</option>
+                <option value="otro">Otro</option>
+            </select>
+            
+            <label for="mensaje">Mensaje:</label>
+            <textarea id="mensaje" name="mensaje" rows="5" required></textarea>
+            
+            <button type="submit">Enviar</button>
+        </form>
+        <p id="mensaje-enviado" style="display: none;">Mensaje enviado con éxito.</p>
+        <button id="volver-inicio">Volver al inicio</button>
+    </div>
+    
+    <footer>
+        <p>&copy; 2025 Universidad La Salle</p>
+    </footer>
+    
+    <script>
+        // Navegación entre páginas
+        document.getElementById('inicio-link').addEventListener('click', mostrarInicio);
+        document.getElementById('contacto-link').addEventListener('click', mostrarContacto);
+        document.getElementById('ir-contacto').addEventListener('click', mostrarContacto);
+        document.getElementById('volver-inicio').addEventListener('click', mostrarInicio);
+        
+        function mostrarInicio() {
+            document.getElementById('pagina-inicio').style.display = 'block';
+            document.getElementById('pagina-contacto').style.display = 'none';
+        }
+        
+        function mostrarContacto() {
+            document.getElementById('pagina-inicio').style.display = 'none';
+            document.getElementById('pagina-contacto').style.display = 'block';
+        }
+        
+        // Envío del formulario
+        document.getElementById('formulario').addEventListener('submit', function(e) {
+            e.preventDefault();
+            document.getElementById('mensaje-enviado').style.display = 'block';
+            document.getElementById('formulario').reset();
+            setTimeout(function() {
+                document.getElementById('mensaje-enviado').style.display = 'none';
+            }, 3000);
+        });
+    </script>
+</body>
+</html>
